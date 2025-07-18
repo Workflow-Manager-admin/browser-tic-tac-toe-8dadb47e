@@ -1,0 +1,223 @@
+/* CSS Variables for Theme Management + Tic Tac Toe custom palette */
+:root {
+  /* Standard light theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f7fa;
+  --text-primary: #222e38;
+  /* ttt-specific colors: */
+  --ttt-primary: #1976d2;    /* X or highlights */
+  --ttt-accent: #ff9800;     /* O or action */
+  --ttt-secondary: #ffffff;  /* Board/surface */
+  --ttt-board-line: #d5d7de; /* Light border */
+  --ttt-board-bg: #ffffff;
+  --ttt-btn-border: #ececec;
+}
+
+/* -------- Tic Tac Toe App Layout -------- */
+.ttt-app-root {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.ttt-header {
+  margin-top: 42px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.ttt-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+  color: var(--ttt-primary);
+  letter-spacing: 1px;
+}
+
+.ttt-status {
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  min-height: 36px;
+}
+
+.ttt-header-controls {
+  margin-bottom: 10px;
+}
+
+.ttt-btn {
+  border: 1.5px solid var(--ttt-btn-border);
+  background: var(--ttt-secondary);
+  border-radius: 0.6em;
+  padding: 0.62em 1.25em;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ttt-primary);
+  margin: 0 0.2em;
+  transition: background 0.12s, color 0.12s, box-shadow 0.15s;
+  box-shadow: 0 2px 5px rgba(25, 118, 210, 0.07);
+}
+
+.ttt-btn-accent {
+  background: var(--ttt-accent);
+  border-color: var(--ttt-accent);
+  color: #fff;
+}
+
+.ttt-btn:hover,
+.ttt-btn-accent:hover {
+  background: #fffbe6;
+  color: var(--ttt-accent);
+  border-color: var(--ttt-accent);
+}
+
+/* -------- Board -------- */
+.ttt-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+  flex: 1;
+}
+.ttt-board {
+  display: inline-block;
+  background: var(--ttt-board-bg);
+  padding: 26px 32px 20px 32px;
+  border-radius: 16px;
+  box-shadow: 0 2px 22px 0 rgba(25, 118, 210, 0.07), 0 0.5px 0 var(--ttt-board-line);
+  margin-bottom: 18px;
+}
+.ttt-board-row {
+  display: flex;
+}
+.ttt-square {
+  width: 70px;
+  height: 70px;
+  margin: 0.2em;
+  background: var(--ttt-secondary);
+  font-size: 2.35em;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 9px;
+  border: 2px solid var(--ttt-board-line);
+  outline: none;
+  color: var(--ttt-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: border 0.14s, box-shadow 0.12s;
+  box-shadow: 0 1.5px 5px rgba(25, 118, 210, 0.04);
+}
+.ttt-square:focus {
+  border-color: var(--ttt-accent);
+  box-shadow: 0 0 0 2.5px #ffe6c4;
+}
+
+.ttt-square:hover:not(:disabled):not(.ttt-square-winner) {
+  border-color: var(--ttt-primary);
+}
+.ttt-square[disabled] {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+.ttt-square-winner {
+  border-color: var(--ttt-accent) !important;
+  background: #fffbe6;
+  color: var(--ttt-accent) !important;
+}
+
+.ttt-turn {
+  color: var(--ttt-primary);
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+.ttt-winner {
+  color: var(--ttt-accent);
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: 0.09em;
+}
+
+/* --------- Move History --------- */
+.ttt-history {
+  margin: 6px 0 0 0;
+  padding: 8px 0 4px 0;
+  background: transparent;
+  text-align: left;
+  display: inline-block;
+}
+.ttt-history-header {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2em;
+}
+
+.ttt-history ol {
+  list-style: decimal inside;
+  padding-left: 0.7em;
+}
+
+.ttt-history-btn {
+  border: none;
+  background: none;
+  color: #8a928f;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 3.5px 1px;
+  font-family: inherit;
+  margin-left: 0;
+  margin-bottom: 0;
+  opacity: 0.86;
+  text-align: left;
+  outline: none;
+  transition: color 0.12s, font-weight 0.12s;
+  border-radius: 4px;
+}
+.ttt-history-btn:hover,
+.ttt-history-btn:focus {
+  color: var(--ttt-primary);
+  font-weight: 600;
+  background: #f0f8ff;
+}
+.ttt-history-btn.current {
+  color: var(--ttt-accent);
+  font-weight: 600;
+  background: #fffbe6;
+  cursor: default;
+}
+
+.ttt-below-board-controls {
+  margin-top: 8px;
+}
+
+/* -------- Footer --------- */
+.ttt-footer {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 8px;
+}
+.ttt-footer-text {
+  color: #888ea1;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+/* --------- Responsive Design --------- */
+@media (max-width: 800px) {
+  .ttt-board {
+    padding: 16px 4vw 16px 4vw;
+  }
+  .ttt-square {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3em;
+  }
+  .ttt-title {
+    font-size: 1.7rem;
+  }
+}
